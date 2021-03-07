@@ -1,4 +1,4 @@
-function [Eq,Er,Tq,Tr] = find_ET(py,pz,N,thrE)
+function [Eq,Er,Tq,Tr,EQ,ER] = find_ET(py,pz,N,thrE)
 
 
 
@@ -26,8 +26,8 @@ while ~stop
     EQ(j) = mean(xi.*(EQ(j-1)*Ri + (1-EQ(j-1))*Qi));
     ER(j) = mean(xi.*(ER(j-1)*Ri + (1-ER(j-1))*Qi));
     
-    dEQ = abs(EQ(j)-EQ(j-1))/EQ(j-1);
-    dER = abs(ER(j)-ER(j-1))/ER(j-1);
+    dEQ = abs(EQ(j)-EQ(j-1));
+    dER = abs(ER(j)-ER(j-1));
 
     if (dEQ<thrE) & ~Q_stop 
         Tq = j*(N-1);
